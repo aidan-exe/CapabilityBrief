@@ -83,12 +83,12 @@ The evidence rules in the running app are deterministic phrase checks. They are 
 
 ## Deploy
 
-The app is a Next.js App Router project and can be imported on Vercel with no extra configuration and no environment variables.
+Live demo: [https://capability-brief.vercel.app](https://capability-brief.vercel.app)
+
+The Vercel project is `capability-brief` (Next.js, no environment variables). Deployment protection is off, so the demo opens without a Vercel login. The current production deployment is the `feat/capability-brief-mvp` branch. After that branch is merged, production should follow `main`.
+
+To deploy again from a machine that is logged in:
 
 ```bash
-npx vercel
+npx vercel --prod
 ```
-
-Framework preset: Next.js. Build command: `npm run build`. Output is the default Next.js build.
-
-If this repository’s Vercel project has a public URL, it is recorded in the pull request. Otherwise import `https://github.com/aidan-exe/CapabilityBrief` in the Vercel dashboard and deploy `main` after merge, or deploy the `feat/capability-brief-mvp` branch as a preview.
