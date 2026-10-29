@@ -119,7 +119,7 @@ function CompetencyCard({
   };
 
   return (
-    <fieldset className="rounded-sm border border-line bg-sheet p-4 sm:p-5">
+    <fieldset className="surface p-4 sm:p-5">
       <legend className="px-1 text-sm font-semibold text-muted">Competency {index + 1}</legend>
       <div className="grid gap-4">
         <Field label="Name">

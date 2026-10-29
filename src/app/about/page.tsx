@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 
 export default function AboutPage() {
   return (
-    <article className="max-w-3xl">
+    <article className="surface max-w-3xl p-5 sm:p-8">
       <p className="text-sm font-semibold tracking-normal text-heading">
         Credify System Thinking Challenge 2026 · Area 04
       </p>

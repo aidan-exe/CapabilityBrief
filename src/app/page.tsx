@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { DemoActions } from "@/components/demo-actions";
+import { SplitWorkspace } from "@/components/split-workspace";
 
 const steps = [
   {
@@ -21,14 +22,13 @@ const steps = [
 
 export default function HomePage() {
   return (
-    <div className="max-w-3xl">
+    <SplitWorkspace>
+    <div>
+      <h1 className="sr-only">What can you show, instead of how many years have you worked?</h1>
       <p className="text-sm font-semibold tracking-normal text-heading">
         Credify System Thinking Challenge 2026 · Area 04 Graduate employability
       </p>
-      <h1 className="mt-3 font-display text-3xl leading-tight text-heading sm:text-4xl">
-        What can you show, instead of how many years have you worked?
-      </h1>
-      <p className="mt-5 text-lg leading-8 text-ink">
+      <p className="mt-3 text-lg leading-8 text-ink">
         Capability Brief is a lean tool for the screening step. Employers in South Africa
         often ask for years of experience even for a first role. That filter is cheap to
         apply and says very little about whether a graduate can do the work. This prototype
@@ -38,27 +38,27 @@ export default function HomePage() {
       <div className="mt-8 flex flex-wrap gap-3">
         <Link
           href="/brief"
-          className="inline-flex items-center justify-center rounded-sm bg-emerald px-3 py-2 text-sm font-semibold text-heading"
+          className="inline-flex items-center justify-center rounded-[10px] bg-emerald px-3 py-2 text-sm font-semibold text-heading"
         >
           Open the demo brief
         </Link>
         <Link
           href="/role"
-          className="inline-flex items-center justify-center rounded-sm bg-white px-4 py-2.5 text-sm font-semibold text-ink border border-line"
+          className="inline-flex items-center justify-center rounded-[10px] border border-[#6d6d6d] bg-white px-3 py-2 text-sm font-semibold text-ink"
         >
           Edit the role
         </Link>
         <Link
           href="/projects"
-          className="inline-flex items-center justify-center rounded-sm bg-white px-4 py-2.5 text-sm font-semibold text-ink border border-line"
+          className="inline-flex items-center justify-center rounded-[10px] border border-[#6d6d6d] bg-white px-3 py-2 text-sm font-semibold text-ink"
         >
           Edit the projects
         </Link>
       </div>
 
-      <ol className="mt-12 grid gap-4 sm:grid-cols-3">
+      <ol className="mt-10 grid gap-4">
         {steps.map((step) => (
-          <li key={step.n} className="rounded-sm border border-line bg-sheet p-4">
+          <li key={step.n} className="surface p-5">
             <p className="font-display text-2xl text-heading">{step.n}</p>
             <h2 className="mt-2 text-lg leading-6 text-heading">{step.title}</h2>
             <p className="mt-2 text-sm leading-6 text-ink">{step.body}</p>
@@ -66,7 +66,7 @@ export default function HomePage() {
         ))}
       </ol>
 
-      <section className="mt-12 rounded-sm border border-line bg-sheet p-5 sm:p-6">
+      <section className="surface mt-8 p-5 sm:p-6">
         <h2 className="font-display text-2xl text-heading">What the brief leaves out</h2>
         <ul className="mt-3 list-disc space-y-2 pl-5 text-ink">
           <li>Years of experience. Not collected and not shown.</li>
@@ -103,5 +103,6 @@ export default function HomePage() {
         .
       </p>
     </div>
+    </SplitWorkspace>
   );
 }

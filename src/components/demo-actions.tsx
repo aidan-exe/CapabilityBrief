@@ -11,14 +11,14 @@ export function DemoActions() {
       <button
         type="button"
         onClick={loadDemo}
-        className="rounded-sm bg-emerald px-3 py-2 text-sm font-semibold text-heading"
+        className="rounded-[10px] bg-emerald px-3 py-2 text-sm font-semibold text-heading"
       >
         Load demo
       </button>
       <button
         type="button"
         onClick={startBlank}
-        className="rounded-sm bg-white px-4 py-2.5 text-sm font-semibold text-ink border border-line"
+        className="rounded-[10px] border border-[#6d6d6d] bg-white px-3 py-2 text-sm font-semibold text-ink"
       >
         Start from the role template
       </button>

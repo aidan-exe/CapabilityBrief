@@ -1,6 +1,7 @@
 "use client";
 
-import { useMemo } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
+import { Printer, RotateCcw } from "lucide-react";
 import { LevelPill } from "@/components/level-pill";
 import { buildBrief, safeHttpUrl } from "@/lib/brief";
 import { LEVEL_LABEL, LEVELS, type EvidenceLevel } from "@/lib/types";
@@ -13,40 +14,66 @@ export function BriefView() {
     [state],
   );
 
-  if (!state || !brief) return <p className="text-muted">Preparing the brief…</p>;
+  const rows = useMemo(() => {
+    if (!state || !brief) return [];
+    return brief.results.map((result) => {
+      const competency = state.role.competencies.find((item) => item.id === result.competencyId);
+      const override = state.overrides[result.competencyId];
+      const applied =
+        override && override.reason.trim().length > 0 && override.level !== result.level
+          ? override
+          : null;
+      return {
+        result,
+        competency,
+        level: applied ? applied.level : result.level,
+        overrideReason: applied?.reason.trim() ?? null,
+      };
+    });
+  }, [state, brief]);
 
-  const rows = brief.results.map((result) => {
-    const competency = state.role.competencies.find((item) => item.id === result.competencyId);
-    const override = state.overrides[result.competencyId];
-    const applied =
-      override && override.reason.trim().length > 0 && override.level !== result.level
-        ? override
-        : null;
-    return {
-      result,
-      competency,
-      level: applied ? applied.level : result.level,
-      overrideReason: applied?.reason.trim() ?? null,
-    };
-  });
+  const signature = rows
+    .map((row) => `${row.result.competencyId}:${row.level}:${row.result.quotes.length}`)
+    .join("|");
+  const seen = useRef<string | null>(null);
+  const [updating, setUpdating] = useState(false);
+
+  useEffect(() => {
+    if (seen.current === null) {
+      seen.current = signature;
+      return;
+    }
+    if (seen.current === signature) return;
+    seen.current = signature;
+    setUpdating(true);
+    const timer = window.setTimeout(() => setUpdating(false), 280);
+    return () => window.clearTimeout(timer);
+  }, [signature]);
+
+  if (!state || !brief) return <p className="text-muted">Preparing the brief…</p>;
 
   const shownGaps = rows.filter((row) => row.level === "gap");
 
   return (
-    <article className="brief-sheet mx-auto max-w-3xl rounded-sm border border-line bg-sheet px-4 py-6 sm:px-8 sm:py-8">
+    <article
+      className="brief-sheet brief-live surface mx-auto w-full px-4 py-6 sm:px-6 sm:py-7"
+      data-updating={updating ? "true" : "false"}
+    >
       <div className="no-print mb-6 flex flex-wrap items-center justify-between gap-3">
         <button
           type="button"
           onClick={loadDemo}
-          className="rounded-sm bg-white px-3 py-2 text-sm font-semibold text-ink border border-line"
+          className="inline-flex items-center gap-1.5 rounded-[10px] border border-[#6d6d6d] bg-white px-3 py-2 text-sm font-semibold text-ink"
         >
+          <RotateCcw className="size-3.5" aria-hidden="true" />
           Reload demo
         </button>
         <button
           type="button"
           onClick={() => window.print()}
-          className="rounded-sm bg-heading px-3 py-2 text-sm font-semibold text-white"
+          className="inline-flex items-center gap-1.5 rounded-[10px] bg-heading px-3 py-2 text-sm font-semibold text-white"
         >
+          <Printer className="size-3.5" aria-hidden="true" />
           Print this brief
         </button>
       </div>
@@ -55,7 +82,7 @@ export function BriefView() {
         <p className="text-xs font-semibold tracking-normal text-muted">
           Capability Brief
         </p>
-        <h1 className="mt-2 font-display text-4xl leading-tight text-heading">
+        <h1 className="mt-2 font-display text-3xl leading-tight text-heading">
           {state.role.title.trim() || "Untitled role"}
         </h1>
         <p className="mt-3 text-lg text-ink">
@@ -71,12 +98,12 @@ export function BriefView() {
         <h2 id="scorecard-heading" className="font-display text-2xl text-heading">
           Evidence by competency
         </h2>
-        <div className="mt-4 divide-y divide-line border-y border-line">
+        <div className="mt-4 grid gap-3">
           {rows.map((row) => {
             const name = row.competency?.name.trim() || "Untitled competency";
             const rubricLine = row.competency?.rubric[row.level]?.trim();
             return (
-              <section key={row.result.competencyId} className="py-5">
+              <section key={row.result.competencyId} className="rounded-[12px] border border-line bg-white p-4">
                 <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
                   <h3 className="text-lg font-semibold leading-6 text-heading">
                     {name}
@@ -105,7 +132,7 @@ export function BriefView() {
                       return (
                         <li
                           key={`${quote.source}-${quote.phrase}`}
-                          className="rounded-sm bg-canvas px-3 py-3 text-sm leading-6 break-words text-ink"
+                          className="rounded-[12px] border border-line bg-canvas px-3 py-3 text-sm leading-6 break-words text-ink"
                         >
                           <blockquote>
                             “<Highlighted text={quote.text} phrase={quote.phrase} />”
@@ -264,7 +291,7 @@ function OverrideControls({
   const pending = selected !== toolLevel && reason.trim().length === 0;
 
   return (
-    <div className="no-print mt-4 grid gap-3 rounded-sm border border-dashed border-line p-3 sm:grid-cols-[12rem_1fr]">
+    <div className="no-print mt-4 grid gap-3 rounded-[12px] border border-dashed border-[#6d6d6d] p-3 sm:grid-cols-[12rem_1fr]">
       <label className="block text-sm">
         <span className="font-medium text-ink">Reviewer override</span>
         <select
