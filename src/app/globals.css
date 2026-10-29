@@ -1,36 +1,61 @@
 @import "tailwindcss";
 
 @theme {
-  --font-sans: var(--font-source), ui-sans-serif, system-ui, sans-serif;
-  --font-serif: var(--font-fraunces), ui-serif, Georgia, serif;
-  --color-paper: #f3efe6;
-  --color-sheet: #fffdf8;
-  --color-ink: #1c1917;
-  --color-clay: #9a3412;
+  --font-sans: var(--font-poppins), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-lexend), ui-sans-serif, system-ui, sans-serif;
+  --color-canvas: #f0f0f0;
+  --color-sheet: #ffffff;
+  --color-ink: #131313;
+  --color-heading: #0f241f;
+  --color-line: #d8d8d8;
+  --color-muted: #6d6d6d;
+  --color-quiet: #919191;
+  --color-emerald: #03ba81;
+  --color-emerald-deep: #027a55;
 }
 
-body {
-  background: var(--color-paper);
+@layer base {
+  body {
+    background: var(--color-canvas);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+    color: var(--color-heading);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-heading);
+    outline-offset: 2px;
+  }
+
+  input[type="checkbox"] {
+    accent-color: var(--color-heading);
+  }
+
+  mark {
+    background: #e7f6f0;
+    color: inherit;
+    padding: 0 0.08em;
+  }
+}
+
+button:disabled {
+  background-color: #d8d8d8;
+  color: #131313;
+}
+
+.notice {
+  border: 1px solid var(--color-line);
+  border-left: 4px solid var(--color-heading);
+  background: var(--color-sheet);
   color: var(--color-ink);
-  font-family: var(--font-sans);
-}
-
-h1,
-h2,
-.font-serif {
-  font-family: var(--font-serif);
-}
-
-:focus-visible {
-  outline: 2px solid var(--color-clay);
-  outline-offset: 2px;
-}
-
-mark {
-  background: #fde68a;
-  color: inherit;
-  padding: 0 0.12em;
-  border-radius: 0.15em;
+  border-radius: 2px;
+  padding: 0.5rem 0.75rem;
 }
 
 @media print {
@@ -43,7 +68,6 @@ mark {
   }
 
   .brief-sheet {
-    box-shadow: none !important;
     border: none !important;
     max-width: none !important;
   }

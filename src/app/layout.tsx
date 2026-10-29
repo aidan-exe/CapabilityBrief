@@ -1,17 +1,19 @@
 import type { Metadata } from "next";
-import { Fraunces, Source_Sans_3 } from "next/font/google";
+import { Lexend, Poppins } from "next/font/google";
 import { AppShell } from "@/components/app-shell";
 import "./globals.css";
 
-const sourceSans = Source_Sans_3({
+const poppins = Poppins({
   subsets: ["latin"],
-  variable: "--font-source",
+  weight: ["400", "500", "600"],
+  variable: "--font-poppins",
   display: "swap",
 });
 
-const fraunces = Fraunces({
+const lexend = Lexend({
   subsets: ["latin"],
-  variable: "--font-fraunces",
+  weight: ["500", "600", "700"],
+  variable: "--font-lexend",
   display: "swap",
 });
 
@@ -31,7 +33,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${sourceSans.variable} ${fraunces.variable} antialiased`}>
+      <body className={`${poppins.variable} ${lexend.variable} antialiased`}>
         <AppShell>{children}</AppShell>
       </body>
     </html>
