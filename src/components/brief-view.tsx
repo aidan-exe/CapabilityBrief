@@ -259,11 +259,6 @@ export function BriefView({ embedded = false }: { embedded?: boolean }) {
           appears is the level shown, and that phrase is highlighted. If none appear, the
           level is Gap. Demo links point at example.com and are not live repositories.
         </p>
-        <p className="mt-2">
-          Aidan Lottering owns the concept and the decisions. AI assistants helped with
-          implementation. This page is not an applicant tracking system and it is not a
-          hiring decision.
-        </p>
       </section>
     </article>
   );

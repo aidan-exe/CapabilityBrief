@@ -64,9 +64,8 @@ export function AppShell({ children }: { children: ReactNode }) {
       </BriefStateProvider>
       <footer className="no-print border-t border-line px-4 py-5 text-sm leading-6 text-ink sm:px-6">
         <p className="mx-auto max-w-7xl">
-          Prototype by Aidan Lottering. He owns the concept and the decisions. AI assistants
-          helped with implementation. This is an evidence summary for a human reviewer. It is
-          not an applicant tracking system and it does not make a hiring decision.
+          Evidence summary for a human reviewer. Not an applicant tracking system and not a
+          hiring decision.
         </p>
       </footer>
     </div>
