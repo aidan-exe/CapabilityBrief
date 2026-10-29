@@ -2,7 +2,7 @@
 
 **Credify System Thinking Challenge 2026 · Challenge area 04: Graduate employability**
 
-Aidan Lottering, software developer, AvoChoc (South Africa)
+Aidan Lottering, software developer, South Africa
 
 **Question:** How can employers identify capable graduates who lack traditional work experience?
 
@@ -36,6 +36,18 @@ npm run dev
 Open [http://localhost:3000](http://localhost:3000).
 
 `npm run lint` and `npm run build` are available. No environment variables, database, or API keys are required.
+
+## Technologies used
+
+- Next.js 15.5.28
+- React 19.1.0 and React DOM 19.1.0
+- TypeScript 5
+- Tailwind CSS 4, with `@tailwindcss/postcss` 4
+- ESLint 9, with `eslint-config-next` 15.5.28
+- Tests run with `tsx` 4.23.15 (`tsx --test`, Node’s built-in test runner)
+- `lucide-react` 1.64.0 for a few interface icons
+- Hosted on Vercel
+- Role, project, and brief state stay in the browser’s `localStorage`. There is no database, no auth, and no environment variables.
 
 ## How the demo works
 
@@ -85,7 +97,7 @@ The evidence rules in the running app are deterministic phrase checks. They are 
 
 Live demo: [https://capability-brief.vercel.app](https://capability-brief.vercel.app)
 
-The Vercel project is `capability-brief` (Next.js, no environment variables). Deployment protection is off, so the demo opens without a Vercel login. The current production deployment is the `feat/capability-brief-mvp` branch. After that branch is merged, production should follow `main`.
+The Vercel project is `capability-brief` (Next.js, no environment variables). Deployment protection is off, so the demo opens without a Vercel login. Production deploys from `main`.
 
 To deploy again from a machine that is logged in:
 
