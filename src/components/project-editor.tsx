@@ -56,7 +56,7 @@ export function ProjectEditor() {
 
       <div className="mt-4 grid gap-5">
         {state.projects.length === 0 ? (
-          <p className="rounded-sm border border-dashed border-line bg-sheet p-5 text-ink">
+          <p className="surface border-dashed p-5 text-ink">
             No projects linked. The brief will show Gap for every competency.
           </p>
         ) : null}
@@ -98,7 +98,7 @@ function ProjectCard({
   };
 
   return (
-    <fieldset className="rounded-sm border border-line bg-sheet p-4 sm:p-5">
+    <fieldset className="surface p-4 sm:p-5">
       <legend className="px-1 text-sm font-semibold text-muted">Project {index + 1}</legend>
       <div className="grid gap-4">
         <Field label="Project title">

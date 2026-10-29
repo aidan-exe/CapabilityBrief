@@ -6,5 +6,9 @@ export const metadata: Metadata = {
 };
 
 export default function BriefPage() {
-  return <BriefView />;
+  return (
+    <div className="mx-auto max-w-3xl">
+      <BriefView />
+    </div>
+  );
 }
