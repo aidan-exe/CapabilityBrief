@@ -7,7 +7,7 @@ export function SplitWorkspace({ children }: { children: ReactNode }) {
   return (
     <div className="grid items-start gap-6 lg:grid-cols-[minmax(0,1.08fr)_minmax(20rem,0.92fr)]">
       <div className="no-print min-w-0">{children}</div>
-      <div className="min-w-0 lg:sticky lg:top-4 lg:max-h-[calc(100vh-1.5rem)] lg:overflow-y-auto">
+      <div className="min-w-0 lg:sticky lg:top-4 lg:max-h-[calc(100vh-1.5rem)] lg:overflow-y-auto print:static print:max-h-none print:overflow-visible">
         <BriefView embedded />
       </div>
     </div>
