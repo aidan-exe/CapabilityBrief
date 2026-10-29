@@ -7,7 +7,7 @@ import { buildBrief, safeHttpUrl } from "@/lib/brief";
 import { LEVEL_LABEL, LEVELS, type EvidenceLevel } from "@/lib/types";
 import { useBriefState } from "@/lib/use-brief-state";
 
-export function BriefView() {
+export function BriefView({ embedded = false }: { embedded?: boolean }) {
   const { state, update, loadDemo } = useBriefState();
   const brief = useMemo(
     () => (state ? buildBrief(state.role, state.projects) : null),
@@ -82,9 +82,15 @@ export function BriefView() {
         <p className="text-xs font-semibold tracking-normal text-muted">
           Capability Brief
         </p>
-        <h1 className="mt-2 font-display text-3xl leading-tight text-heading">
-          {state.role.title.trim() || "Untitled role"}
-        </h1>
+        {embedded ? (
+          <h2 className="mt-2 font-display text-3xl leading-tight text-heading">
+            {state.role.title.trim() || "Untitled role"}
+          </h2>
+        ) : (
+          <h1 className="mt-2 font-display text-3xl leading-tight text-heading">
+            {state.role.title.trim() || "Untitled role"}
+          </h1>
+        )}
         <p className="mt-3 text-lg text-ink">
           {state.role.applicantLabel.trim() || "Applicant"}
         </p>
