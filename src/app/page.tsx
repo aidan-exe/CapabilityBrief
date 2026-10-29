@@ -91,17 +91,6 @@ export default function HomePage() {
           <DemoActions />
         </div>
       </section>
-
-      <p className="mt-10 text-sm leading-6 text-muted">
-        Aidan Lottering, software developer at AvoChoc, owns the concept and the decisions.
-        AI assistants helped implement this prototype. The full write-up is in{" "}
-        <span className="font-medium text-ink">docs/PROJECT_DOCUMENTATION.md</span> and{" "}
-        <span className="font-medium text-ink">docs/SUMMARY.md</span>.{" "}
-        <Link href="/about" className="font-semibold text-heading underline">
-          Read the short version
-        </Link>
-        .
-      </p>
     </div>
     </SplitWorkspace>
   );

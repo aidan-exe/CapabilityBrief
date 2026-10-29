@@ -4,7 +4,7 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "About",
   description:
-    "Capability Brief for Credify challenge area 04, graduate employability. What the prototype is, what it refuses to claim, and how it was made.",
+    "Capability Brief for Credify challenge area 04, graduate employability. What the prototype is, and what it refuses to claim.",
 };
 
 export default function AboutPage() {
@@ -70,16 +70,8 @@ export default function AboutPage() {
         <li>Phrase matching can miss real evidence that uses different words, and it can over-trust a pasted line.</li>
       </ul>
 
-      <h2 className="mt-10 font-display text-2xl text-heading">How this was made</h2>
-      <p className="mt-3 leading-7 text-ink">
-        Aidan Lottering, a software developer at AvoChoc in South Africa, owns the concept,
-        the rubric choices, and the decision to leave out years of experience and an overall
-        score. AI assistants helped research and draft the written submission, and helped
-        implement this prototype. He reviewed the work and is responsible for it, including
-        its weaknesses.
-      </p>
-      <p className="mt-3 leading-7 text-ink">
-        The full system write-up, sources, and one-page summary are in the repository at{" "}
+      <p className="mt-6 leading-7 text-ink">
+        The full system write-up and sources are in the repository at{" "}
         <span className="font-medium">docs/PROJECT_DOCUMENTATION.md</span> and{" "}
         <span className="font-medium">docs/SUMMARY.md</span>.
       </p>
