@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 
 export const inputClass =
-  "w-full rounded-md border border-stone-300 bg-white px-3 py-2 text-base leading-6 text-stone-950";
+  "w-full rounded-sm border border-line bg-sheet px-3 py-2 text-base leading-6 text-ink";
 
 export function Field({
   label,
@@ -14,8 +14,8 @@ export function Field({
 }) {
   return (
     <label className="block">
-      <span className="text-sm font-medium text-stone-800">{label}</span>
-      {hint ? <span className="mt-0.5 block text-sm leading-5 text-stone-600">{hint}</span> : null}
+      <span className="text-sm font-medium text-ink">{label}</span>
+      {hint ? <span className="mt-0.5 block text-sm leading-5 text-muted">{hint}</span> : null}
       <div className="mt-1.5">{children}</div>
     </label>
   );

@@ -12,21 +12,21 @@ function createId(): string {
 
 export function ProjectEditor() {
   const { state, update } = useBriefState();
-  if (!state) return <p className="text-stone-600">Loading projects…</p>;
+  if (!state) return <p className="text-muted">Loading projects…</p>;
 
   const count = state.projects.length;
 
   return (
     <div className="max-w-3xl">
-      <p className="text-sm font-semibold uppercase tracking-wider text-clay">Step 2 · Graduate</p>
-      <h1 className="mt-2 font-serif text-4xl text-stone-950">Link projects and reflect</h1>
-      <p className="mt-3 leading-7 text-stone-700">
+      <p className="text-sm font-semibold tracking-normal text-heading">Step 2 · Graduate</p>
+      <h1 className="mt-2 font-display text-4xl text-heading">Link projects and reflect</h1>
+      <p className="mt-3 leading-7 text-ink">
         Link 1 to 3 public projects. A repository, a deployed page, or a short write-up all
         count, including coursework and group work, as long as the reflection says what you
         personally did. This prototype does not call GitHub. Paste a short excerpt if you want
         a file, a commit message, or a README line to be quotable.
       </p>
-      <p className="mt-3 text-sm leading-6 text-stone-600">
+      <p className="mt-3 text-sm leading-6 text-muted">
         A graduate with no project can leave this empty. The brief will mark the competencies
         as gaps and still suggest a 45-minute work sample, so a missing portfolio is not an
         automatic exclusion. What you type stays in this browser.
@@ -36,8 +36,8 @@ export function ProjectEditor() {
       </div>
 
       <div className="mt-8 flex flex-wrap items-center justify-between gap-3">
-        <h2 className="font-serif text-2xl text-stone-950">
-          Projects <span className="text-lg text-stone-500">{count} of 0–3</span>
+        <h2 className="font-display text-2xl text-heading">
+          Projects <span className="text-lg text-muted">{count} of 0–3</span>
         </h2>
         <button
           type="button"
@@ -48,7 +48,7 @@ export function ProjectEditor() {
               projects: [...current.projects, emptyProject(createId())],
             }))
           }
-          className="rounded-md bg-stone-900 px-3 py-2 text-sm font-semibold text-white disabled:cursor-not-allowed disabled:bg-stone-400"
+          className="rounded-sm bg-heading px-3 py-2 text-sm font-semibold text-white disabled:cursor-not-allowed disabled:bg-line disabled:text-ink"
         >
           Add project
         </button>
@@ -56,7 +56,7 @@ export function ProjectEditor() {
 
       <div className="mt-4 grid gap-5">
         {state.projects.length === 0 ? (
-          <p className="rounded-xl border border-dashed border-stone-400 bg-sheet p-5 text-stone-700">
+          <p className="rounded-sm border border-dashed border-line bg-sheet p-5 text-ink">
             No projects linked. The brief will show Gap for every competency.
           </p>
         ) : null}
@@ -98,8 +98,8 @@ function ProjectCard({
   };
 
   return (
-    <fieldset className="rounded-xl border border-stone-300 bg-sheet p-4 sm:p-5">
-      <legend className="px-1 text-sm font-semibold text-stone-600">Project {index + 1}</legend>
+    <fieldset className="rounded-sm border border-line bg-sheet p-4 sm:p-5">
+      <legend className="px-1 text-sm font-semibold text-muted">Project {index + 1}</legend>
       <div className="grid gap-4">
         <Field label="Project title">
           <TextInput value={project.title} onChange={(title) => patchProject({ title })} />
@@ -127,25 +127,25 @@ function ProjectCard({
 
         <div>
           <div className="flex flex-wrap items-center justify-between gap-2">
-            <h3 className="text-sm font-semibold text-stone-800">Evidence notes</h3>
+            <h3 className="text-sm font-semibold text-ink">Evidence notes</h3>
             <button
               type="button"
               disabled={project.notes.length >= 6}
               onClick={() =>
                 patchProject({ notes: [...project.notes, emptyNote(createId())] })
               }
-              className="text-sm font-semibold text-clay disabled:text-stone-400"
+              className="text-sm font-semibold text-heading disabled:text-muted"
             >
               Add a note
             </button>
           </div>
-          <p className="mt-1 text-sm leading-5 text-stone-600">
+          <p className="mt-1 text-sm leading-5 text-muted">
             Paste a line from a README, a file, or a commit message. If a rubric phrase is in
             that line, the brief can quote it.
           </p>
           <div className="mt-3 grid gap-3">
             {project.notes.map((note) => (
-              <div key={note.id} className="rounded-lg border border-stone-200 bg-white p-3">
+              <div key={note.id} className="rounded-sm border border-line bg-white p-3">
                 <div className="grid gap-3">
                   <Field label="Label" hint="For example README.md, src/App.tsx, or Commit history.">
                     <TextInput
@@ -190,7 +190,7 @@ function ProjectCard({
                     onClick={() =>
                       patchProject({ notes: project.notes.filter((item) => item.id !== note.id) })
                     }
-                    className="justify-self-start text-sm font-semibold text-clay"
+                    className="justify-self-start text-sm font-semibold text-heading"
                   >
                     Remove note
                   </button>
@@ -208,7 +208,7 @@ function ProjectCard({
               projects: current.projects.filter((item) => item.id !== projectId),
             }))
           }
-          className="justify-self-start text-sm font-semibold text-clay"
+          className="justify-self-start text-sm font-semibold text-heading"
         >
           Remove project
         </button>

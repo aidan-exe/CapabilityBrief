@@ -14,15 +14,15 @@ function createId(): string {
 
 export function RoleEditor() {
   const { state, update } = useBriefState();
-  if (!state) return <p className="text-stone-600">Loading the role…</p>;
+  if (!state) return <p className="text-muted">Loading the role…</p>;
 
   const count = state.role.competencies.length;
 
   return (
     <div className="max-w-3xl">
-      <p className="text-sm font-semibold uppercase tracking-wider text-clay">Step 1 · Employer</p>
-      <h1 className="mt-2 font-serif text-4xl text-stone-950">Define the role</h1>
-      <p className="mt-3 leading-7 text-stone-700">
+      <p className="text-sm font-semibold tracking-normal text-heading">Step 1 · Employer</p>
+      <h1 className="mt-2 font-display text-4xl text-heading">Define the role</h1>
+      <p className="mt-3 leading-7 text-ink">
         Pick 4 to 6 competencies. For each one, write what Gap, Some, Clear, and Strong
         evidence looks like, and list the phrases that count. A level is suggested only when
         one of those phrases appears in a project or reflection. The tool does not guess, and
@@ -53,8 +53,8 @@ export function RoleEditor() {
       </div>
 
       <div className="mt-8 flex flex-wrap items-center justify-between gap-3">
-        <h2 className="font-serif text-2xl text-stone-950">
-          Competencies <span className="text-lg text-stone-500">{count} of 4–6</span>
+        <h2 className="font-display text-2xl text-heading">
+          Competencies <span className="text-lg text-muted">{count} of 4–6</span>
         </h2>
         <button
           type="button"
@@ -68,7 +68,7 @@ export function RoleEditor() {
               },
             }))
           }
-          className="rounded-md bg-stone-900 px-3 py-2 text-sm font-semibold text-white disabled:cursor-not-allowed disabled:bg-stone-400"
+          className="rounded-sm bg-heading px-3 py-2 text-sm font-semibold text-white disabled:cursor-not-allowed disabled:bg-line disabled:text-ink"
         >
           Add competency
         </button>
@@ -119,13 +119,13 @@ function CompetencyCard({
   };
 
   return (
-    <fieldset className="rounded-xl border border-stone-300 bg-sheet p-4 sm:p-5">
-      <legend className="px-1 text-sm font-semibold text-stone-600">Competency {index + 1}</legend>
+    <fieldset className="rounded-sm border border-line bg-sheet p-4 sm:p-5">
+      <legend className="px-1 text-sm font-semibold text-muted">Competency {index + 1}</legend>
       <div className="grid gap-4">
         <Field label="Name">
           <TextInput value={competency.name} onChange={(name) => patch({ name })} />
         </Field>
-        <label className="flex items-start gap-2 text-sm text-stone-800">
+        <label className="flex items-start gap-2 text-sm text-ink">
           <input
             type="checkbox"
             className="mt-1"
@@ -195,12 +195,12 @@ function CompetencyCard({
                 ),
               }))
             }
-            className="text-sm font-semibold text-clay disabled:cursor-not-allowed disabled:text-stone-400"
+            className="text-sm font-semibold text-heading disabled:cursor-not-allowed disabled:text-muted"
           >
             Remove competency
           </button>
           {!canRemove ? (
-            <p className="mt-1 text-sm text-stone-500">Keep at least 4 competencies.</p>
+            <p className="mt-1 text-sm text-muted">Keep at least 4 competencies.</p>
           ) : null}
         </div>
       </div>
