@@ -39,7 +39,7 @@ export function BriefView({ embedded = false }: { embedded?: boolean }) {
   const [updating, setUpdating] = useState(false);
 
   useEffect(() => {
-    if (seen.current === null) {
+    if (!signature || seen.current === null || seen.current === "") {
       seen.current = signature;
       return;
     }
