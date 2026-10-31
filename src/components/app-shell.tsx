@@ -64,7 +64,7 @@ export function AppShell({ children }: { children: ReactNode }) {
         </div>
       </header>
       <BriefStateProvider>
-        <main id="content" className="mx-auto max-w-7xl px-4 py-6 sm:px-6 sm:py-8">
+        <main id="content" tabIndex={-1} className="mx-auto max-w-7xl px-4 py-6 sm:px-6 sm:py-8">
           <GuideTip pathname={pathname} guide={guide} onDismiss={dismiss} />
           {children}
         </main>
