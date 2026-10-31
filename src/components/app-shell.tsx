@@ -4,7 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { FileText } from "lucide-react";
 import type { ReactNode } from "react";
-import { GuideTip, GuideToggle, useGuide } from "@/components/guide-me";
+import { GuideToggle, GuideTour, useGuide } from "@/components/guide-me";
 import { BriefStateProvider } from "@/lib/use-brief-state";
 
 const links = [
@@ -17,12 +17,12 @@ const links = [
 
 export function AppShell({ children }: { children: ReactNode }) {
   const pathname = usePathname();
-  const { guide, toggle, dismiss } = useGuide();
+  const { guide, toggle, stop, go } = useGuide();
   const guideOn = guide?.on === true;
 
   return (
     <div className="min-h-screen">
-      <header className="no-print bg-heading text-white">
+      <header className="no-print relative z-50 bg-heading text-white">
         <a href="#content" className="skip-link">
           Skip to content
         </a>
@@ -65,8 +65,8 @@ export function AppShell({ children }: { children: ReactNode }) {
       </header>
       <BriefStateProvider>
         <main id="content" tabIndex={-1} className="mx-auto max-w-7xl px-4 py-6 sm:px-6 sm:py-8">
-          <GuideTip pathname={pathname} guide={guide} onDismiss={dismiss} />
           {children}
+          <GuideTour guide={guide} stop={stop} go={go} />
         </main>
       </BriefStateProvider>
       <footer className="no-print border-t border-line px-4 py-5 text-sm leading-6 text-ink sm:px-6">

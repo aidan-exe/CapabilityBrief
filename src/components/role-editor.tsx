@@ -32,7 +32,7 @@ export function RoleEditor() {
         <DemoActions />
       </div>
 
-      <div className="mt-8 grid gap-4">
+      <div className="mt-8 grid gap-4" data-tour="role-identity">
         <Field label="Role title" hint="The job this rubric is for. Entry-level technical roles are the first fit.">
           <TextInput
             value={state.role.title}
@@ -134,7 +134,7 @@ function CompetencyCard({
           />
           <span>Most important for this role. Used when choosing the work-sample suggestion.</span>
         </label>
-        <div className="grid gap-3 sm:grid-cols-2">
+        <div className="grid gap-3 sm:grid-cols-2" data-tour={index === 0 ? "rubric" : undefined}>
           {(["gap", "some", "clear", "strong"] as EvidenceLevel[]).map((level) => (
             <Field key={level} label={`${LEVEL_LABEL[level]} looks like`}>
               <TextArea
@@ -145,7 +145,7 @@ function CompetencyCard({
             </Field>
           ))}
         </div>
-        <div className="grid gap-3">
+        <div className="grid gap-3" data-tour={index === 0 ? "phrases" : undefined}>
           {signalBands.map((band) => (
             <Field
               key={band}

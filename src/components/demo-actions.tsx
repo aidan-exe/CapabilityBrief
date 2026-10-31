@@ -11,6 +11,7 @@ export function DemoActions() {
       <button
         type="button"
         onClick={loadDemo}
+        data-tour="load-demo"
         className="rounded-[10px] bg-emerald px-3 py-2 text-sm font-semibold text-heading"
       >
         Load demo

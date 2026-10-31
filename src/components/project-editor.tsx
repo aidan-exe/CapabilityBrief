@@ -115,6 +115,7 @@ function ProjectCard({
             onChange={(url) => patchProject({ url })}
           />
         </Field>
+        <div className="grid gap-4" data-tour={index === 0 ? "reflections" : undefined}>
         {REFLECTION_FIELDS.map((field) => (
           <Field key={field.key} label={field.label} hint="A short paragraph is enough.">
             <TextArea
@@ -124,8 +125,9 @@ function ProjectCard({
             />
           </Field>
         ))}
+        </div>
 
-        <div>
+        <div data-tour={index === 0 ? "notes" : undefined}>
           <div className="flex flex-wrap items-center justify-between gap-2">
             <h3 className="text-sm font-semibold text-ink">Evidence notes</h3>
             <button

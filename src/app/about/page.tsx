@@ -13,7 +13,9 @@ export default function AboutPage() {
       <p className="text-sm font-semibold tracking-normal text-heading">
         Credify System Thinking Challenge 2026 · Area 04
       </p>
-      <h1 className="mt-3 font-display text-4xl text-heading">About this prototype</h1>
+      <h1 className="mt-3 font-display text-4xl text-heading" data-tour="tour-end">
+        About this prototype
+      </h1>
       <p className="mt-4 text-lg leading-8 text-ink">
         Question: how can employers identify capable graduates who lack traditional work
         experience?
