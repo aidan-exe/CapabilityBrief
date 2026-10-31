@@ -25,6 +25,7 @@ export default function HomePage() {
     <SplitWorkspace>
     <div>
       <h1 className="sr-only">What can you show, instead of how many years have you worked?</h1>
+      <div data-tour="overview">
       <p className="text-sm font-semibold tracking-normal text-heading">
         Credify System Thinking Challenge 2026 · Area 04 Graduate employability
       </p>
@@ -34,6 +35,7 @@ export default function HomePage() {
         apply and says very little about whether a graduate can do the work. This prototype
         swaps that question for evidence against a written rubric.
       </p>
+      </div>
 
       <div className="mt-8 flex flex-wrap gap-3">
         <Link

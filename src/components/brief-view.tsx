@@ -109,7 +109,11 @@ export function BriefView({ embedded = false }: { embedded?: boolean }) {
             const name = row.competency?.name.trim() || "Untitled competency";
             const rubricLine = row.competency?.rubric[row.level]?.trim();
             return (
-              <section key={row.result.competencyId} className="rounded-[12px] border border-line bg-white p-4">
+              <section
+                key={row.result.competencyId}
+                data-tour={row.result.competencyId === rows[0]?.result.competencyId ? "evidence" : undefined}
+                className="rounded-[12px] border border-line bg-white p-4"
+              >
                 <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
                   <h3 className="text-lg font-semibold leading-6 text-heading">
                     {name}
@@ -178,6 +182,7 @@ export function BriefView({ embedded = false }: { embedded?: boolean }) {
                   competencyId={row.result.competencyId}
                   override={state.overrides[row.result.competencyId]}
                   update={update}
+                  tourAnchor={row.result.competencyId === rows[0]?.result.competencyId}
                 />
               </section>
             );
@@ -209,7 +214,7 @@ export function BriefView({ embedded = false }: { embedded?: boolean }) {
         )}
       </section>
 
-      <section className="mt-8" aria-labelledby="sample-heading">
+      <section className="mt-8" aria-labelledby="sample-heading" data-tour="work-sample">
         <h2 id="sample-heading" className="font-display text-2xl text-heading">
           Suggested 45-minute work sample
         </h2>
@@ -281,18 +286,23 @@ function OverrideControls({
   competencyId,
   override,
   update,
+  tourAnchor = false,
 }: {
   toolLevel: EvidenceLevel;
   competencyId: string;
   override: { level: EvidenceLevel; reason: string } | undefined;
   update: ReturnType<typeof useBriefState>["update"];
+  tourAnchor?: boolean;
 }) {
   const selected = override?.level ?? toolLevel;
   const reason = override?.reason ?? "";
   const pending = selected !== toolLevel && reason.trim().length === 0;
 
   return (
-    <div className="no-print mt-4 grid gap-3 rounded-[12px] border border-dashed border-[#6d6d6d] p-3 sm:grid-cols-[12rem_1fr]">
+    <div
+      data-tour={tourAnchor ? "override" : undefined}
+      className="no-print mt-4 grid gap-3 rounded-[12px] border border-dashed border-[#6d6d6d] p-3 sm:grid-cols-[12rem_1fr]"
+    >
       <label className="block text-sm">
         <span className="font-medium text-ink">Reviewer override</span>
         <select
