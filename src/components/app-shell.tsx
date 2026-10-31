@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { FileText } from "lucide-react";
 import type { ReactNode } from "react";
+import { GuideTip, GuideToggle, useGuide } from "@/components/guide-me";
 import { BriefStateProvider } from "@/lib/use-brief-state";
 
 const links = [
@@ -16,6 +17,8 @@ const links = [
 
 export function AppShell({ children }: { children: ReactNode }) {
   const pathname = usePathname();
+  const { guide, toggle, dismiss } = useGuide();
+  const guideOn = guide?.on === true;
 
   return (
     <div className="min-h-screen">
@@ -29,7 +32,10 @@ export function AppShell({ children }: { children: ReactNode }) {
               <FileText className="size-5 text-emerald" aria-hidden="true" />
               Capability Brief
             </Link>
-            <p className="text-xs font-medium text-quiet">Credify 2026 · Area 04</p>
+            <div className="flex flex-wrap items-center gap-3">
+              <p className="text-xs font-medium text-quiet">Credify 2026 · Area 04</p>
+              <GuideToggle pressed={guideOn} onToggle={toggle} />
+            </div>
           </div>
           <p className="mt-6 max-w-2xl font-display text-2xl leading-tight text-white sm:text-3xl">
             What can you show, instead of how many years have you worked?
@@ -59,6 +65,7 @@ export function AppShell({ children }: { children: ReactNode }) {
       </header>
       <BriefStateProvider>
         <main id="content" className="mx-auto max-w-7xl px-4 py-6 sm:px-6 sm:py-8">
+          <GuideTip pathname={pathname} guide={guide} onDismiss={dismiss} />
           {children}
         </main>
       </BriefStateProvider>
